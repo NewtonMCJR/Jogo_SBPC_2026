@@ -1,0 +1,202 @@
+[
+  {
+    "colecao": "Histopatológica",
+    "titulo": "Lâmina de Rotina",
+    "subtitulo": "Análise Primária",
+    "descricao_ilustracao": "Micrografia celular em tons de rosa e roxo (H&E) sob a lente.",
+    "acao": "Subtraia ou some 1 do dado.",
+    "flavor_text": "\"A coloração revela os primeiros sinais da anomalia no tecido.\""
+  },
+  {
+    "colecao": "Histopatológica",
+    "titulo": "Biópsia Focada",
+    "subtitulo": "Investigação de Tecido",
+    "descricao_ilustracao": "Fragmento de tecido com uma área infecciosa circulada em vermelho.",
+    "acao": "Re-role 1 dado.",
+    "flavor_text": "\"Um olhar mais atento na amostra pode mudar o diagnóstico.\""
+  },
+  {
+    "colecao": "Histopatológica",
+    "titulo": "Padrão Celular",
+    "subtitulo": "Confirmação Visual",
+    "descricao_ilustracao": "Células anômalas se destacando em meio a tecido saudável.",
+    "acao": "Transforme qualquer valor em 3.",
+    "flavor_text": "\"O arranjo celular confirma nossa suspeita principal.\""
+  },
+  {
+    "colecao": "Histopatológica",
+    "titulo": "Microscopia Avançada",
+    "subtitulo": "Lentes de Precisão",
+    "descricao_ilustracao": "Lente objetiva de microscópio brilhando com o reflexo de uma lâmina.",
+    "acao": "Re-role 1 dado.",
+    "flavor_text": "\"Aumentando a resolução para garantir total clareza.\""
+  },
+  {
+    "colecao": "Histopatológica",
+    "titulo": "Laudo Conclusivo",
+    "subtitulo": "Diagnóstico",
+    "descricao_ilustracao": "Documento oficial assinado sobrepondo imagens histológicas.",
+    "acao": "Transforme qualquer valor em 3.",
+    "flavor_text": "\"A evidência histológica é inquestionável para a saúde pública.\""
+  },
+  {
+    "colecao": "Microbiológica",
+    "titulo": "Placa de Petri",
+    "subtitulo": "Isolamento de Agente",
+    "descricao_ilustracao": "Cultura bacteriana crescendo em meio ágar com coloração amarelada.",
+    "acao": "Subtraia ou some 1 do dado.",
+    "flavor_text": "\"O meio de cultura adequado isola perfeitamente o patógeno.\""
+  },
+  {
+    "colecao": "Microbiológica",
+    "titulo": "Teste de Cultura",
+    "subtitulo": "Crescimento In Vitro",
+    "descricao_ilustracao": "Fileira de tubos de ensaio contendo líquidos de cores distintas.",
+    "acao": "Subtraia ou some 1 do dado.",
+    "flavor_text": "\"Avaliando a velocidade de proliferação do microrganismo.\""
+  },
+  {
+    "colecao": "Microbiológica",
+    "titulo": "Cepa Autenticada",
+    "subtitulo": "Referência Fiocruz",
+    "descricao_ilustracao": "Frasco criogênico congelado emitindo leve vapor frio.",
+    "acao": "Inverta o valor do dado.",
+    "flavor_text": "\"A base exata para iniciarmos nossos estudos epidemiológicos.\""
+  },
+  {
+    "colecao": "Microbiológica",
+    "titulo": "Antibiograma",
+    "subtitulo": "Teste de Resistência",
+    "descricao_ilustracao": "Placa de Petri mostrando halos claros de inibição bacteriana.",
+    "acao": "Subtraia ou some 1 do dado.",
+    "flavor_text": "\"Descobrindo quais compostos detêm a progressão da infecção.\""
+  },
+  {
+    "colecao": "Microbiológica",
+    "titulo": "Imunizante Piloto",
+    "subtitulo": "Pesquisa de Vacina",
+    "descricao_ilustracao": "Ampola de vidro brilhante contendo um líquido bioluminescente.",
+    "acao": "Inverta o valor do dado.",
+    "flavor_text": "\"O desenvolvimento da vacina avança graças à cepa isolada.\""
+  },
+  {
+    "colecao": "Zoológica",
+    "titulo": "Inseto Vetor",
+    "subtitulo": "Rastreio Entomológico",
+    "descricao_ilustracao": "Um mosquito *Aedes aegypti* altamente detalhado em voo.",
+    "acao": "Subtraia ou some 1 do dado.",
+    "flavor_text": "\"Compreender o vetor é o primeiro passo para conter o surto.\""
+  },
+  {
+    "colecao": "Zoológica",
+    "titulo": "Espécime de Museu",
+    "subtitulo": "Registro de Biodiversidade",
+    "descricao_ilustracao": "Inseto exótico preservado cuidadosamente com um alfinete entomológico.",
+    "acao": "Inverta o valor do dado.",
+    "flavor_text": "\"Um registro físico indispensável da nossa vasta fauna.\""
+  },
+  {
+    "colecao": "Zoológica",
+    "titulo": "Reservatório Silvestre",
+    "subtitulo": "Elo da Cadeia",
+    "descricao_ilustracao": "Pequeno roedor fotorrealista escondido na vegetação rasteira.",
+    "acao": "Transforme qualquer valor em 5.",
+    "flavor_text": "\"A doença repousa silenciosa na natureza antes de atacar.\""
+  },
+  {
+    "colecao": "Zoológica",
+    "titulo": "Mapeamento de Fauna",
+    "subtitulo": "Distribuição Geográfica",
+    "descricao_ilustracao": "Mapa topográfico com marcações apontando as áreas de incidência.",
+    "acao": "Re-role 2 dados.",
+    "flavor_text": "\"Ampliando nossa visão sobre o território afetado.\""
+  },
+  {
+    "colecao": "Zoológica",
+    "titulo": "Estudo Evolutivo",
+    "subtitulo": "Relação de Espécies",
+    "descricao_ilustracao": "Crânios de diferentes animais alinhados para estudo comparativo.",
+    "acao": "Transforme qualquer valor em 5.",
+    "flavor_text": "\"O parentesco das espécies dita como o agente infeccioso se adapta.\""
+  },
+  {
+    "colecao": "Botânica",
+    "titulo": "Exsicata Padrão",
+    "subtitulo": "Catalogação de Flora",
+    "descricao_ilustracao": "Ramo de planta seco e planificado cuidadosamente sobre papel pardo.",
+    "acao": "Subtraia ou some 1 do dado.",
+    "flavor_text": "\"A identificação correta garante a eficácia da pesquisa.\""
+  },
+  {
+    "colecao": "Botânica",
+    "titulo": "Extrato Foliar",
+    "subtitulo": "Compostos Naturais",
+    "descricao_ilustracao": "Uma gota verde brilhante pendurada na ponta de uma folha medicinal.",
+    "acao": "Subtraia ou some 1 do dado.",
+    "flavor_text": "\"Extraindo o princípio ativo escondido na biodiversidade.\""
+  },
+  {
+    "colecao": "Botânica",
+    "titulo": "Fitoterápico",
+    "subtitulo": "Biotecnologia",
+    "descricao_ilustracao": "Cápsulas transparentes revelando pós e grânulos vegetais.",
+    "acao": "Inverta o valor do dado.",
+    "flavor_text": "\"Transformando a natureza nacional em solução de saúde pública.\""
+  },
+  {
+    "colecao": "Botânica",
+    "titulo": "Saberes Tradicionais",
+    "subtitulo": "Planta Medicinal",
+    "descricao_ilustracao": "Ramo de erva recém-colhida exalando uma aura suave.",
+    "acao": "Transforme qualquer valor em 5.",
+    "flavor_text": "\"O conhecimento popular nos guia até a cura botânica.\""
+  },
+  {
+    "colecao": "Botânica",
+    "titulo": "Destilação Botânica",
+    "subtitulo": "Isolamento Químico",
+    "descricao_ilustracao": "Balão de vidro destilando óleo essencial de folhas maceradas.",
+    "acao": "Transforme qualquer valor em 5.",
+    "flavor_text": "\"Purificando as propriedades curativas do extrato vegetal.\""
+  },
+  {
+    "colecao": "Arqueopaleontológica",
+    "titulo": "Fragmento Fóssil",
+    "subtitulo": "Evidência Antiga",
+    "descricao_ilustracao": "Pedaço de osso fossilizado incrustado em rocha sedimentar.",
+    "acao": "Subtraia ou some 1 do dado.",
+    "flavor_text": "\"O solo preserva histórias milenares sobre antigas aflições.\""
+  },
+  {
+    "colecao": "Arqueopaleontológica",
+    "titulo": "Escavação Cuidadosa",
+    "subtitulo": "Resgate Histórico",
+    "descricao_ilustracao": "Pincel de cerdas macias limpando a poeira de uma relíquia óssea.",
+    "acao": "Subtraia ou some 1 do dado.",
+    "flavor_text": "\"A cada camada de terra removida, um novo quebra-cabeça surge.\""
+  },
+  {
+    "colecao": "Arqueopaleontológica",
+    "titulo": "Coprólito",
+    "subtitulo": "Paleoepidemiologia",
+    "descricao_ilustracao": "Fóssil fecal com estrutura interna evidenciando larvas petrificadas.",
+    "acao": "Transforme qualquer valor em 2.",
+    "flavor_text": "\"Até os resíduos de milênios nos ensinam sobre parasitas.\""
+  },
+  {
+    "colecao": "Arqueopaleontológica",
+    "titulo": "Marca Óssea",
+    "subtitulo": "Paleopatologia",
+    "descricao_ilustracao": "Crânio antigo com lesões porosas indicando uma infecção severa.",
+    "acao": "Re-role 2 dados.",
+    "flavor_text": "\"A história das doenças está eternamente cravada nos ossos.\""
+  },
+  {
+    "colecao": "Arqueopaleontológica",
+    "titulo": "Material Adormecido",
+    "subtitulo": "Genética Ancestral",
+    "descricao_ilustracao": "Estrutura de DNA translúcida emergindo da poeira de um artefato.",
+    "acao": "Transforme qualquer valor em 2.",
+    "flavor_text": "\"Desvendando como os agentes infecciosos evoluíram até o presente.\""
+  }
+]
