@@ -158,7 +158,7 @@
     "subtitulo": "Biotecnologia",
     "descricao_ilustracao": "Cápsulas transparentes revelando pós e grânulos vegetais.",
     "acao": "Inverta o valor do dado.",
-    "imagem": "botanica_03.svg",
+    "imagem": "botanica_03.png",
     "flavor_text": "\"Transformando a natureza nacional em solução de saúde pública.\""
   },
   {
@@ -167,7 +167,7 @@
     "subtitulo": "Planta Medicinal",
     "descricao_ilustracao": "Ramo de erva recém-colhida exalando uma aura suave.",
     "acao": "Transforme qualquer valor em 5.",
-    "imagem": "botanica_04.svg",
+    "imagem": "botanica_04.png",
     "flavor_text": "\"O conhecimento popular nos guia até a cura botânica.\""
   },
   {
@@ -176,7 +176,7 @@
     "subtitulo": "Isolamento Químico",
     "descricao_ilustracao": "Balão de vidro destilando óleo essencial de folhas maceradas.",
     "acao": "Transforme qualquer valor em 5.",
-    "imagem": "botanica_05.svg",
+    "imagem": "botanica_05.png",
     "flavor_text": "\"Purificando as propriedades curativas do extrato vegetal.\""
   },
   {
@@ -185,7 +185,7 @@
     "subtitulo": "Evidência Antiga",
     "descricao_ilustracao": "Pedaço de osso fossilizado incrustado em rocha sedimentar.",
     "acao": "Subtraia ou some 1 do dado.",
-    "imagem": "arqueo_01.svg",
+    "imagem": "arqueo_01.png",
     "flavor_text": "\"O solo preserva histórias milenares sobre antigas aflições.\""
   },
   {
@@ -194,7 +194,7 @@
     "subtitulo": "Resgate Histórico",
     "descricao_ilustracao": "Pincel de cerdas macias limpando a poeira de uma relíquia óssea.",
     "acao": "Subtraia ou some 1 do dado.",
-    "imagem": "arqueo_02.svg",
+    "imagem": "arqueo_02.png",
     "flavor_text": "\"A cada camada de terra removida, um novo quebra-cabeça surge.\""
   },
   {
@@ -203,7 +203,7 @@
     "subtitulo": "Paleoepidemiologia",
     "descricao_ilustracao": "Fóssil fecal com estrutura interna evidenciando larvas petrificadas.",
     "acao": "Transforme qualquer valor em 2.",
-    "imagem": "arqueo_03.svg",
+    "imagem": "arqueo_03.png",
     "flavor_text": "\"Até os resíduos de milênios nos ensinam sobre parasitas.\""
   },
   {
@@ -212,7 +212,7 @@
     "subtitulo": "Paleopatologia",
     "descricao_ilustracao": "Crânio antigo com lesões porosas indicando uma infecção severa.",
     "acao": "Re-role 2 dados.",
-    "imagem": "arqueo_04.svg",
+    "imagem": "arqueo_04.png",
     "flavor_text": "\"A história das doenças está eternamente cravada nos ossos.\""
   },
   {
@@ -221,7 +221,7 @@
     "subtitulo": "Genética Ancestral",
     "descricao_ilustracao": "Estrutura de DNA translúcida emergindo da poeira de um artefato.",
     "acao": "Transforme qualquer valor em 2.",
-    "imagem": "arqueo_05.svg",
+    "imagem": "arqueo_05.png",
     "flavor_text": "\"Desvendando como os agentes infecciosos evoluíram até o presente.\""
   }
 ]
