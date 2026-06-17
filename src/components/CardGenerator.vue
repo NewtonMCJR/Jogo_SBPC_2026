@@ -46,11 +46,11 @@
             <h3 class="card-subtitle">{{ carta.subtitulo }}</h3>
           </header>
 
-          <!-- Illustration Area -->
+          <!-- Illustration Area (21:9 Aspect Ratio) -->
           <div class="card-illustration">
             <div class="illustration-border">
               <img 
-                :src="getCollectionImage(carta.colecao)" 
+                :src="'/imagens/' + carta.imagem" 
                 :alt="carta.descricao_ilustracao" 
                 class="illustration-image" 
               />
@@ -159,17 +159,6 @@ const getCollectionClass = (colecao) => {
     'Zoológica': 'theme-zoologica',
     'Botânica': 'theme-botanica',
     'Arqueopaleontológica': 'theme-arqueopaleontologica'
-  };
-  return mapping[colecao] || '';
-};
-
-const getCollectionImage = (colecao) => {
-  const mapping = {
-    'Histopatológica': '/imagens/histopatologia.png',
-    'Microbiológica': '/imagens/microbiologia.png',
-    'Zoológica': '/imagens/zoologia.png',
-    'Botânica': '/imagens/botanica.png',
-    'Arqueopaleontológica': '/imagens/arqueopaleontologia.png'
   };
   return mapping[colecao] || '';
 };
@@ -445,11 +434,9 @@ const printCards = () => {
   letter-spacing: 0.1px;
 }
 
-/* 2. ILLUSTRATION BOX WITH IMAGE */
+/* 2. ILLUSTRATION BOX WITH 21:9 IMAGE */
 .card-illustration {
-  flex-grow: 1;
-  min-height: 25mm;
-  max-height: 28mm;
+  width: 100%;
   margin-bottom: 2mm;
   box-sizing: border-box;
   position: relative;
@@ -457,7 +444,7 @@ const printCards = () => {
 
 .illustration-border {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 21 / 9; /* Rigid 21:9 aspect ratio */
   box-sizing: border-box;
   border: 0.3mm solid var(--primary-color);
   border-radius: 1.2mm;
