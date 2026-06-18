@@ -10,6 +10,14 @@
         <div class="info-badge">
           <span class="count">{{ cartas.length }}</span> frentes / <span class="count">25</span> versos prontos para impressão
         </div>
+        <button @click="exportJSON" class="btn-export" title="Exportar arquivo cartas_fiocruz.json atualizado">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2-2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Exportar JSON
+        </button>
         <button @click="printCards" class="btn-print">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="6 9 6 2 18 2 18 9"></polyline>
@@ -24,7 +32,7 @@
     <!-- 1. FRONTS OF CARDS (As 25 cartas de face) -->
     <div class="section-title no-print">
       <h2>Frente das Cartas (25 unidades)</h2>
-      <p>Organizadas para impressão A4 duplex (3 páginas de frentes)</p>
+      <p>Clique em qualquer carta para abrir o painel de edição rápida</p>
     </div>
 
     <div class="cards-grid">
@@ -33,6 +41,7 @@
         :key="index" 
         class="card card-front"
         :class="getCollectionClass(carta.colecao)"
+        @click="openEditModal(index)"
       >
         <!-- Card Inner Border for a layered look -->
         <div class="card-inner">
@@ -45,6 +54,14 @@
             <h2 class="card-title">{{ carta.titulo }}</h2>
             <h3 class="card-subtitle">{{ carta.subtitulo }}</h3>
           </header>
+
+          <!-- Edit indicator on hover (Screen only) -->
+          <div class="edit-badge no-print">
+            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4Z"></path>
+            </svg>
+          </div>
 
           <!-- Illustration Area (21:9 Aspect Ratio) -->
           <div class="card-illustration">
@@ -82,7 +99,7 @@
     <!-- 2. BACKS OF CARDS (Os 25 versos das cartas, espelhados horizontalmente para alinhamento duplex) -->
     <div class="section-title backs-section-title no-print">
       <h2>Verso das Cartas (25 unidades)</h2>
-      <p>Gerados na mesma quantidade e espelhados horizontalmente para alinhar perfeitamente no verso das frentes</p>
+      <p>Gerados na mesma quantidade e espelhados horizontalmente para alinhamento perfeito duplex no A4</p>
     </div>
 
     <div class="cards-grid backs-grid">
@@ -143,12 +160,59 @@
         </div>
       </template>
     </div>
+
+    <!-- Edit Card Modal Panel (Screen view only) -->
+    <div v-if="isModalOpen" class="modal-overlay no-print" @click.self="closeModal">
+      <div class="modal-content" :class="getCollectionClass(editForm.colecao)">
+        <header class="modal-header">
+          <h2>Editar Conteúdo da Carta</h2>
+          <span class="modal-collection">{{ editForm.colecao }}</span>
+        </header>
+        
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="edit-title">Título</label>
+            <input id="edit-title" v-model="editForm.titulo" type="text" placeholder="Nome do item/recurso" />
+          </div>
+          
+          <div class="form-group">
+            <label for="edit-subtitle">Subtítulo</label>
+            <input id="edit-subtitle" v-model="editForm.subtitulo" type="text" placeholder="Tipo do recurso" />
+          </div>
+          
+          <div class="form-group">
+            <label for="edit-action">Ação da Carta (Dado)</label>
+            <input id="edit-action" v-model="editForm.acao" type="text" placeholder="Poder/Efeito no dado" />
+          </div>
+
+          <div class="form-group">
+            <label for="edit-image">Nome da Imagem (.png)</label>
+            <input id="edit-image" v-model="editForm.imagem" type="text" placeholder="ex: histopatologia_01.png" />
+          </div>
+
+          <div class="form-group">
+            <label for="edit-desc">Descrição da Ilustração (Hover)</label>
+            <textarea id="edit-desc" v-model="editForm.descricao_ilustracao" rows="3" placeholder="Descrição do desenho na carta"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="edit-flavor">Texto de Ambientação (Flavor Text)</label>
+            <textarea id="edit-flavor" v-model="editForm.flavor_text" rows="3" placeholder="Frase em itálico de ambientação"></textarea>
+          </div>
+        </div>
+        
+        <footer class="modal-footer">
+          <button @click="closeModal" class="btn-cancel">Cancelar</button>
+          <button @click="saveCard" class="btn-save">Salvar Alterações</button>
+        </footer>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue';
-import cartas from './cartas_fiocruz.json';
+import { ref, computed } from 'vue';
+import rawCartas from './cartas_fiocruz.json';
 
 const colecoes = [
   'Histopatológica',
@@ -158,9 +222,57 @@ const colecoes = [
   'Arqueopaleontológica'
 ];
 
+// Reactive array of cards
+const cartas = ref([...rawCartas]);
+
+// Modal State
+const isModalOpen = ref(false);
+const activeIndex = ref(null);
+const editForm = ref({
+  colecao: '',
+  titulo: '',
+  subtitulo: '',
+  descricao_ilustracao: '',
+  acao: '',
+  imagem: '',
+  flavor_text: ''
+});
+
+// Open and load card details into edit form
+const openEditModal = (index) => {
+  activeIndex.value = index;
+  editForm.value = { ...cartas.value[index] };
+  isModalOpen.value = true;
+};
+
+// Close edit panel
+const closeModal = () => {
+  isModalOpen.value = false;
+  activeIndex.value = null;
+};
+
+// Save edited card properties back to reactive array
+const saveCard = () => {
+  if (activeIndex.value !== null) {
+    cartas.value[activeIndex.value] = { ...editForm.value };
+  }
+  closeModal();
+};
+
+// Export modified cards as a new cartas_fiocruz.json file
+const exportJSON = () => {
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(cartas.value, null, 2));
+  const downloadAnchor = document.createElement('a');
+  downloadAnchor.setAttribute("href", dataStr);
+  downloadAnchor.setAttribute("download", "cartas_fiocruz.json");
+  document.body.appendChild(downloadAnchor);
+  downloadAnchor.click();
+  downloadAnchor.remove();
+};
+
 // Reorganizes and mirrors card backs horizontally for perfect A4 duplex alignment
 const cartasVerso = computed(() => {
-  const list = [...cartas];
+  const list = [...cartas.value];
   const mirroredList = [];
   const cardsPerPage = 9;
   const cols = 3;
@@ -298,7 +410,7 @@ const printCards = () => {
 .info-and-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
 }
 
 .info-badge {
@@ -308,11 +420,33 @@ const printCards = () => {
   border-radius: 9999px;
   font-size: 14px;
   color: #cbd5e1;
+  margin-right: 8px;
 }
 
 .info-badge .count {
   font-weight: 700;
   color: #38bdf8;
+}
+
+.btn-export {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-export:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 .btn-print {
@@ -407,9 +541,61 @@ const printCards = () => {
   padding: 1.2mm;
 }
 
+/* Card Front Click Styling */
+.card-front {
+  cursor: pointer;
+}
+
+.card-front::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0);
+  transition: background 0.2s ease;
+  pointer-events: none;
+}
+
+.card-front:hover::after {
+  background: rgba(255, 255, 255, 0.05);
+}
+
 .card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 30px var(--border-glow);
+}
+
+/* Edit Icon Badge overlay */
+.edit-badge {
+  position: absolute;
+  top: 1.5mm;
+  right: 1.5mm;
+  background: rgba(15, 17, 21, 0.85);
+  border: 0.3mm solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-radius: 50%;
+  width: 6mm;
+  height: 6mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.card-front:hover .edit-badge {
+  opacity: 1;
+}
+
+.edit-badge svg {
+  width: 3.2mm;
+  height: 3.2mm;
+  stroke: #38bdf8;
 }
 
 /* Inner Frame of the Card */
@@ -705,6 +891,171 @@ const printCards = () => {
   box-shadow: none !important;
   page-break-inside: avoid;
   break-inside: avoid;
+}
+
+/* ------------------------------------------------------------- */
+/* EDIT MODAL DIALOG STYLE (Screen only)                         */
+/* ------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 12, 16, 0.82);
+  backdrop-filter: blur(8px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  background: #181d28;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 5px solid var(--primary-color, #38bdf8);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 40px var(--border-glow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalEnter 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 19px;
+  margin: 0;
+  color: #f8fafc;
+  letter-spacing: 0.5px;
+}
+
+.modal-collection {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: var(--primary-color);
+  padding: 4px 12px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px var(--border-glow);
+}
+
+.modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #141822;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 0.3px;
+}
+
+.form-group input,
+.form-group textarea {
+  background: #0f1118;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 12px;
+  color: #f1f5f9;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 12px var(--border-glow);
+  background: #11141d;
+}
+
+.modal-footer {
+  padding: 18px 24px;
+  background: #181d28;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #f8fafc;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-save {
+  background: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px var(--border-glow);
+}
+
+.btn-save:hover {
+  background: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px var(--border-glow);
+}
+
+.btn-save:active {
+  transform: translateY(0);
 }
 
 /* Page break element only used in printing */
