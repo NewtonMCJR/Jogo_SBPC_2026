@@ -8,7 +8,7 @@
       </div>
       <div class="info-and-actions">
         <div class="info-badge">
-          <span class="count">{{ cartas.length }}</span> cartas prontas para impressão
+          <span class="count">{{ cartas.length }}</span> frentes / <span class="count">25</span> versos prontos para impressão
         </div>
         <button @click="printCards" class="btn-print">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -23,8 +23,8 @@
 
     <!-- 1. FRONTS OF CARDS (As 25 cartas de face) -->
     <div class="section-title no-print">
-      <h2>Frente das Cartas</h2>
-      <p>Total de 25 cartas divididas em 5 coleções biológicas</p>
+      <h2>Frente das Cartas (25 unidades)</h2>
+      <p>Organizadas para impressão A4 duplex (3 páginas de frentes)</p>
     </div>
 
     <div class="cards-grid">
@@ -79,69 +79,75 @@
     <!-- Print Separator to push backs to a new page -->
     <div class="page-break-print"></div>
 
-    <!-- 2. BACKS OF CARDS (Os versos das cartas) -->
+    <!-- 2. BACKS OF CARDS (Os 25 versos das cartas, espelhados horizontalmente para alinhamento duplex) -->
     <div class="section-title backs-section-title no-print">
-      <h2>Verso das Cartas</h2>
-      <p>O verso de cada carta corresponde à cor e identidade visual de sua respectiva Coleção Biológica</p>
+      <h2>Verso das Cartas (25 unidades)</h2>
+      <p>Gerados na mesma quantidade e espelhados horizontalmente para alinhar perfeitamente no verso das frentes</p>
     </div>
 
     <div class="cards-grid backs-grid">
-      <div 
-        v-for="colecao in colecoes" 
-        :key="colecao" 
-        class="card card-back"
-        :class="getCollectionClass(colecao)"
-      >
-        <div class="card-inner back-inner">
-          <div class="back-pattern">
-            <!-- Emblem / Icon based on Collection -->
-            <div class="back-emblem">
-              <svg v-if="colecao === 'Histopatológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
-                <circle cx="12" cy="12" r="10"></circle>
-                <circle cx="12" cy="12" r="3"></circle>
-                <circle cx="6" cy="9" r="1"></circle>
-                <circle cx="17" cy="8" r="1.5"></circle>
-                <circle cx="9" cy="16" r="2"></circle>
-              </svg>
-              <svg v-else-if="colecao === 'Microbiológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M12 6a6 6 0 0 1 6 6c0 2.2-1.8 4-4 4s-4-1.8-4-4S12 6 12 6z"></path>
-                <path d="M8 8l1.5 1.5M16 8l-1.5 1.5M8 16l1.5-1.5M16 16l-1.5-1.5"></path>
-              </svg>
-              <svg v-else-if="colecao === 'Zoológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
-                <path d="M12 2v20M12 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
-                <path d="M2 12h20M6 8l12 8M6 16l12-8"></path>
-              </svg>
-              <svg v-else-if="colecao === 'Botânica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
-                <path d="M2 22C2 22 8 18 12 12C16 6 22 2 22 2C22 2 18 8 12 12C6 16 2 22 2 22Z"></path>
-                <path d="M12 12l4 1M8 16l3 1M16 8l1 4M19 5l-3 1"></path>
-              </svg>
-              <svg v-else-if="colecao === 'Arqueopaleontológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
-                <path d="M17 3a5 5 0 0 0-5 5v8a5 5 0 0 0 10 0V8a5 5 0 0 0-5-5z"></path>
-                <path d="M7 21a5 5 0 0 0 5-5V8a5 5 0 0 0-10 0v8a5 5 0 0 0 5 5z"></path>
-                <circle cx="17" cy="8" r="2"></circle>
-                <circle cx="7" cy="16" r="2"></circle>
-              </svg>
+      <template v-for="(carta, index) in cartasVerso" :key="'back-' + index">
+        <!-- Placeholder invisible card to preserve grid layout positioning -->
+        <div v-if="carta.isPlaceholder" class="card card-placeholder"></div>
+        
+        <!-- Standard Card Back -->
+        <div 
+          v-else
+          class="card card-back"
+          :class="getCollectionClass(carta.colecao)"
+        >
+          <div class="card-inner back-inner">
+            <div class="back-pattern">
+              <!-- Emblem / Icon based on Collection -->
+              <div class="back-emblem">
+                <svg v-if="carta.colecao === 'Histopatológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <circle cx="6" cy="9" r="1"></circle>
+                  <circle cx="17" cy="8" r="1.5"></circle>
+                  <circle cx="9" cy="16" r="2"></circle>
+                </svg>
+                <svg v-else-if="carta.colecao === 'Microbiológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 6a6 6 0 0 1 6 6c0 2.2-1.8 4-4 4s-4-1.8-4-4S12 6 12 6z"></path>
+                  <path d="M8 8l1.5 1.5M16 8l-1.5 1.5M8 16l1.5-1.5M16 16l-1.5-1.5"></path>
+                </svg>
+                <svg v-else-if="carta.colecao === 'Zoológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
+                  <path d="M12 2v20M12 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
+                  <path d="M2 12h20M6 8l12 8M6 16l12-8"></path>
+                </svg>
+                <svg v-else-if="carta.colecao === 'Botânica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
+                  <path d="M2 22C2 22 8 18 12 12C16 6 22 2 22 2C22 2 18 8 12 12C6 16 2 22 2 22Z"></path>
+                  <path d="M12 12l4 1M8 16l3 1M16 8l1 4M19 5l-3 1"></path>
+                </svg>
+                <svg v-else-if="carta.colecao === 'Arqueopaleontológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
+                  <path d="M17 3a5 5 0 0 0-5 5v8a5 5 0 0 0 10 0V8a5 5 0 0 0-5-5z"></path>
+                  <path d="M7 21a5 5 0 0 0 5-5V8a5 5 0 0 0-10 0v8a5 5 0 0 0 5 5z"></path>
+                  <circle cx="17" cy="8" r="2"></circle>
+                  <circle cx="7" cy="16" r="2"></circle>
+                </svg>
+              </div>
+              
+              <!-- Branding and Typography -->
+              <div class="back-text">
+                <span class="back-brand">Fiocruz</span>
+                <h2 class="back-title">Coleção Biológica</h2>
+                <span class="back-sub">{{ carta.colecao }}</span>
+              </div>
             </div>
             
-            <!-- Branding and Typography -->
-            <div class="back-text">
-              <span class="back-brand">Fiocruz</span>
-              <h2 class="back-title">Coleção Biológica</h2>
-              <span class="back-sub">{{ colecao }}</span>
+            <div class="back-footer">
+              <span>SBPC 2026 • Jogo de Tabuleiro</span>
             </div>
           </div>
-          
-          <div class="back-footer">
-            <span>SBPC 2026 • Jogo de Tabuleiro</span>
-          </div>
         </div>
-      </div>
+      </template>
     </div>
   </div>
 </template>
 
 <script setup>
+import { computed } from 'vue';
 import cartas from './cartas_fiocruz.json';
 
 const colecoes = [
@@ -151,6 +157,35 @@ const colecoes = [
   'Botânica',
   'Arqueopaleontológica'
 ];
+
+// Reorganizes and mirrors card backs horizontally for perfect A4 duplex alignment
+const cartasVerso = computed(() => {
+  const list = [...cartas];
+  const mirroredList = [];
+  const cardsPerPage = 9;
+  const cols = 3;
+  
+  // Group into pages of 9
+  for (let p = 0; p < list.length; p += cardsPerPage) {
+    const page = list.slice(p, p + cardsPerPage);
+    
+    // Process in rows of 3 columns
+    for (let r = 0; r < cardsPerPage; r += cols) {
+      const row = page.slice(r, r + cols);
+      if (row.length === 0) break;
+      
+      // If the last row of the page is incomplete, pad it with placeholders to maintain grid position
+      while (row.length < cols) {
+        row.push({ isPlaceholder: true });
+      }
+      
+      // Reverse row order horizontally to align correctly when printed double-sided
+      row.reverse();
+      mirroredList.push(...row);
+    }
+  }
+  return mirroredList;
+});
 
 const getCollectionClass = (colecao) => {
   const mapping = {
@@ -656,6 +691,20 @@ const printCards = () => {
   opacity: 0.65;
   text-transform: uppercase;
   font-weight: 500;
+}
+
+/* Placeholder card for print mapping alignment */
+.card-placeholder {
+  width: 59mm;
+  height: 85mm;
+  box-sizing: border-box;
+  border: 3.5mm solid transparent;
+  padding: 1.2mm;
+  visibility: hidden;
+  background: transparent !important;
+  box-shadow: none !important;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 /* Page break element only used in printing */
