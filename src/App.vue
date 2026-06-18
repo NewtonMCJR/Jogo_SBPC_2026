@@ -45,14 +45,14 @@
     <CardGenerator v-else-if="currentView === 'cards'" @go-home="currentView = 'home'" />
 
     <!-- 3. PLAYER BOARD VIEW -->
-    <PlayerBoard v-else-if="currentView === 'boards'" @go-home="currentView = 'home'" />
+    <PlayerBoards v-else-if="currentView === 'boards'" @go-home="currentView = 'home'" />
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import CardGenerator from './components/CardGenerator.vue';
-import PlayerBoard from './components/PlayerBoard.vue';
+import PlayerBoards from './components/PlayerBoards.vue';
 
 const currentView = ref('home');
 </script>
