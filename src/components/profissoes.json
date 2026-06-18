@@ -1,0 +1,68 @@
+[
+    {
+        "id": "biologo",
+        "profissao": "Biólogo",
+        "lema": "\"A cura sempre esteve escondida na nossa biodiversidade.\"",
+        "descricao_imagem": "Profissional em campo, com um tablet e uma exsicata, cercado de forma harmoniosa por flora e fauna nativas.",
+        "atributos": {
+            "dados_base": 1,
+            "limite_cartas": 2
+        },
+        "colecoes_permitidas": [
+            "Botânica",
+            "Zoológica"
+        ]
+    },
+    {
+        "id": "microbiologista",
+        "profissao": "Microbiologista",
+        "lema": "\"O controle do invisível começa no rigor da bancada.\"",
+        "descricao_imagem": "Especialista em um ambiente de biossegurança e infraestrutura laboratorial de ponta, como o LAMES, focado na análise de culturas em placas de Petri.",
+        "atributos": {
+            "dados_base": 2,
+            "limite_cartas": 1
+        },
+        "colecoes_permitidas": [
+            "Microbiológica"
+        ]
+    },
+    {
+        "id": "patologista",
+        "profissao": "Patologista",
+        "lema": "\"Preservar a morfologia é garantir o diagnóstico correto.\"",
+        "descricao_imagem": "Profissional focado nas lentes de um microscópio, cercado por frascos e armários que remetem aos vastos acervos do Museu da Patologia.",
+        "atributos": {
+            "dados_base": 2,
+            "limite_cartas": 1
+        },
+        "colecoes_permitidas": [
+            "Histopatológica"
+        ]
+    },
+    {
+        "id": "paleontologo",
+        "profissao": "Paleontólogo",
+        "lema": "\"As epidemias de hoje estão gravadas nos ossos de ontem.\"",
+        "descricao_imagem": "Pesquisador com um pincel macio, limpando cuidadosamente um coprólito ou fragmento ósseo em uma tenda de escavação.",
+        "atributos": {
+            "dados_base": 1,
+            "limite_cartas": 2
+        },
+        "colecoes_permitidas": [
+            "Arqueopaleontológica"
+        ]
+    },
+    {
+        "id": "epidemiologista",
+        "profissao": "Epidemiologista",
+        "lema": "\"Nenhuma doença avança sem deixar um rastro de dados.\"",
+        "descricao_imagem": "Estrategista em frente a um grande painel digital, mapeando os vetores no território para coordenar a equipe.",
+        "atributos": {
+            "dados_base": 1,
+            "limite_cartas": 1
+        },
+        "colecoes_permitidas": [
+            "Qualquer Coleção"
+        ]
+    }
+]
