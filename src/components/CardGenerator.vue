@@ -174,7 +174,7 @@
                   </div>
                   
                   <div class="back-footer">
-                    <span>SBPC 2026 • Jogo de Tabuleiro</span>
+                    <!-- Rodapé vazio temporariamente -->
                   </div>
                 </div>
               </div>
