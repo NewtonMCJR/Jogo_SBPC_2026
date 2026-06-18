@@ -128,12 +128,16 @@
                     <span class="brand-tag">Coleção Biológica</span>
                     <h2 class="profissao-title">{{ prof.profissao }}</h2>
                   </div>
-                  
-                  <!-- Placeholder for descricao_imagem -->
-                  <div class="image-placeholder-box">
-                    <div class="placeholder-design">
-                      <span class="placeholder-icon">👁️‍🗨️</span>
-                      <p class="placeholder-desc">{{ prof.descricao_imagem }}</p>
+                  <!-- Ilustração Temática da Profissão (Verso) -->
+                  <div class="back-illustration-box">
+                    <img 
+                      :src="'/imagens/' + getProfessionIllustration(prof.id)" 
+                      :alt="prof.descricao_imagem" 
+                      class="back-illustration-image"
+                    />
+                    <!-- Overlay de Descrição em Tela (no-print) -->
+                    <div class="illustration-caption no-print">
+                      <p>{{ prof.descricao_imagem }}</p>
                     </div>
                   </div>
                 </div>
@@ -181,6 +185,10 @@ const chunkedProfissoes = computed(() => {
   }
   return result;
 });
+
+const getProfessionIllustration = (id) => {
+  return `ilustracao_${id}.png`;
+};
 </script>
 
 <style scoped>
@@ -641,42 +649,55 @@ const chunkedProfissoes = computed(() => {
   margin-bottom: 1mm;
 }
 
-/* Back Bottom: Centered Description Placeholder Box (Large Space) */
-.image-placeholder-box {
-  width: 90%;
-  height: 48mm;
+/* Back Bottom: Centered Illustration Box (Exact 21:9 Aspect Ratio) */
+.back-illustration-box {
+  width: 126mm;
+  height: 54mm;
   box-sizing: border-box;
+  border: 0.5mm solid var(--primary-color);
+  border-radius: 2mm;
+  overflow: hidden;
+  position: relative;
+  background-color: #f8fafc;
+  box-shadow: 0 1mm 2mm rgba(0, 0, 0, 0.05);
 }
 
-.placeholder-design {
+.back-illustration-image {
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
-  border: 0.4mm dashed rgba(0, 0, 0, 0.1);
-  border-radius: 2mm;
-  background-color: rgba(255, 255, 255, 0.65);
+  object-fit: cover;
+  display: block;
+}
+
+/* Captions / Descrição da imagem visível em hover na tela */
+.illustration-caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 17, 21, 0.92);
+  color: #e2e8f0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 4mm;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
   text-align: center;
-  gap: 2.5mm;
-  padding: 4mm 8mm;
 }
 
-.placeholder-icon {
-  font-size: 24pt;
-  color: var(--primary-color);
-  opacity: 0.65;
+.back-illustration-box:hover .illustration-caption {
+  opacity: 1;
 }
 
-.placeholder-desc {
-  font-size: 7.5pt;
+.illustration-caption p {
+  font-size: 8pt;
   line-height: 1.4;
-  color: #475569;
   font-style: italic;
   margin: 0;
-  max-width: 90%;
 }
 
 /* ------------------------------------------------------------- */
