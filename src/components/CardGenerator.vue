@@ -89,6 +89,16 @@
           <div class="card-action-box">
             <span class="action-label">Ação</span>
             <p class="action-desc">{{ carta.acao }}</p>
+            <!-- Símbolo Ativo (se houver) -->
+            <div v-if="carta.simbolo" class="simbolo-container">
+              <div 
+                class="simbolo-icon"
+                :style="{ 
+                  maskImage: `url('/imagens/${carta.simbolo}')`, 
+                  webkitMaskImage: `url('/imagens/${carta.simbolo}')` 
+                }"
+              ></div>
+            </div>
           </div>
 
           <!-- Card Footer (Flavor Text) -->
@@ -201,6 +211,11 @@
             <label for="edit-image">Nome da Imagem (.png)</label>
             <input id="edit-image" v-model="editForm.imagem" type="text" placeholder="ex: histopatologia_01.png" />
           </div>
+          
+          <div class="form-group">
+            <label for="edit-simbolo">Símbolo Especial (.svg)</label>
+            <input id="edit-simbolo" v-model="editForm.simbolo" type="text" placeholder="ex: celula.svg (deixe em branco se nenhum)" />
+          </div>
 
           <div class="form-group">
             <label for="edit-desc">Descrição da Ilustração (Hover)</label>
@@ -249,6 +264,7 @@ const editForm = ref({
   descricao_ilustracao: '',
   acao: '',
   imagem: '',
+  simbolo: '',
   flavor_text: ''
 });
 
@@ -798,6 +814,26 @@ const printCards = () => {
   margin: 0;
   text-align: center;
   line-height: 1.2;
+}
+
+.simbolo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.2mm;
+}
+
+.simbolo-icon {
+  background-color: var(--primary-color);
+  width: 5.5mm;
+  height: 5.5mm;
+  display: inline-block;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
 }
 
 /* 4. FOOTER (Flavor Text) */

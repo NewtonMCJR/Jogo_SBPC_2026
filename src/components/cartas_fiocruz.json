@@ -4,8 +4,9 @@
     "titulo": "Lâmina de Rotina",
     "subtitulo": "Análise Primária",
     "descricao_ilustracao": "Micrografia celular em tons de rosa e roxo (H&E) sob a lente.",
-    "acao": "Subtraia ou some 1 do dado.",
+    "acao": "Re-role 1 dado.",
     "imagem": "histopatologia.png",
+    "simbolo": "",
     "flavor_text": "\"A coloração revela os primeiros sinais da anomalia no tecido.\""
   },
   {
@@ -15,6 +16,7 @@
     "descricao_ilustracao": "Fragmento de tecido com uma área infecciosa circulada em vermelho.",
     "acao": "Re-role 1 dado.",
     "imagem": "histopatologia_02.png",
+    "simbolo": "",
     "flavor_text": "\"Um olhar mais atento na amostra pode mudar o diagnóstico.\""
   },
   {
@@ -22,8 +24,9 @@
     "titulo": "Padrão Celular",
     "subtitulo": "Confirmação Visual",
     "descricao_ilustracao": "Células anômalas se destacando em meio a tecido saudável.",
-    "acao": "Transforme qualquer valor em 3.",
+    "acao": "Mude 1 dado para o símbolo de célula.",
     "imagem": "histopatologia_03.png",
+    "simbolo": "celula.svg",
     "flavor_text": "\"O arranjo celular confirma nossa suspeita principal.\""
   },
   {
@@ -31,8 +34,9 @@
     "titulo": "Microscopia Avançada",
     "subtitulo": "Lentes de Precisão",
     "descricao_ilustracao": "Lente objetiva de microscópio brilhando com o reflexo de uma lâmina.",
-    "acao": "Re-role 1 dado.",
+    "acao": "Vire 1 dado para a face fisicamente oposta.",
     "imagem": "histopatologia_04.png",
+    "simbolo": "",
     "flavor_text": "\"Aumentando a resolução para garantir total clareza.\""
   },
   {
@@ -40,8 +44,9 @@
     "titulo": "Laudo Conclusivo",
     "subtitulo": "Diagnóstico",
     "descricao_ilustracao": "Documento oficial assinado sobrepondo imagens histológicas.",
-    "acao": "Transforme qualquer valor em 3.",
+    "acao": "Re-role até 2 dados (seus ou de um aliado).",
     "imagem": "histopatologia_05.png",
+    "simbolo": "",
     "flavor_text": "\"A evidência histológica é inquestionável para a saúde pública.\""
   },
   {
@@ -49,8 +54,9 @@
     "titulo": "Placa de Petri",
     "subtitulo": "Isolamento de Agente",
     "descricao_ilustracao": "Cultura bacteriana crescendo em meio ágar com coloração amarelada.",
-    "acao": "Subtraia ou some 1 do dado.",
+    "acao": "Vire 1 dado para a face fisicamente oposta.",
     "imagem": "microbiologia_01.png",
+    "simbolo": "",
     "flavor_text": "\"O meio de cultura adequado isola perfeitamente o patógeno.\""
   },
   {
@@ -58,8 +64,9 @@
     "titulo": "Teste de Cultura",
     "subtitulo": "Crescimento In Vitro",
     "descricao_ilustracao": "Fileira de tubos de ensaio contendo líquidos de cores distintas.",
-    "acao": "Subtraia ou some 1 do dado.",
+    "acao": "Vire 1 dado para a face fisicamente oposta.",
     "imagem": "microbiologia_02.png",
+    "simbolo": "",
     "flavor_text": "\"Avaliando a velocidade de proliferação do microrganismo.\""
   },
   {
@@ -67,8 +74,9 @@
     "titulo": "Cepa Autenticada",
     "subtitulo": "Referência Fiocruz",
     "descricao_ilustracao": "Frasco criogênico congelado emitindo leve vapor frio.",
-    "acao": "Inverta o valor do dado.",
+    "acao": "Mude 1 dado para o símbolo de Bactéria.",
     "imagem": "microbiologia_03.png",
+    "simbolo": "bacteria.svg",
     "flavor_text": "\"A base exata para iniciarmos nossos estudos epidemiológicos.\""
   },
   {
@@ -76,8 +84,9 @@
     "titulo": "Antibiograma",
     "subtitulo": "Teste de Resistência",
     "descricao_ilustracao": "Placa de Petri mostrando halos claros de inibição bacteriana.",
-    "acao": "Subtraia ou some 1 do dado.",
+    "acao": "Vire 1 dado para a face fisicamente oposta.",
     "imagem": "microbiologia_04.png",
+    "simbolo": "",
     "flavor_text": "\"Descobrindo quais compostos detêm a progressão da infecção.\""
   },
   {
@@ -85,8 +94,9 @@
     "titulo": "Imunizante Piloto",
     "subtitulo": "Pesquisa de Vacina",
     "descricao_ilustracao": "Ampola de vidro brilhante contendo um líquido bioluminescente.",
-    "acao": "Inverta o valor do dado.",
+    "acao": "Mude 1 dado para o símbolo de Bactéria.",
     "imagem": "microbiologia_05.png",
+    "simbolo": "bacteria.svg",
     "flavor_text": "\"O desenvolvimento da vacina avança graças à cepa isolada.\""
   },
   {
@@ -94,8 +104,9 @@
     "titulo": "Inseto Vetor",
     "subtitulo": "Rastreio Entomológico",
     "descricao_ilustracao": "Um mosquito *Aedes aegypti* altamente detalhado em voo.",
-    "acao": "Subtraia ou some 1 do dado.",
+    "acao": "Copie um símbolo: mude 1 dado para ficar igual a outro já na mesa.",
     "imagem": "zoologica_01.png",
+    "simbolo": "",
     "flavor_text": "\"Compreender o vetor é o primeiro passo para conter o surto.\""
   },
   {
@@ -103,8 +114,9 @@
     "titulo": "Espécime de Museu",
     "subtitulo": "Registro de Biodiversidade",
     "descricao_ilustracao": "Inseto exótico preservado cuidadosamente com um alfinete entomológico.",
-    "acao": "Inverta o valor do dado.",
+    "acao": "Copie um símbolo: mude 1 dado para ficar igual a outro já na mesa.",
     "imagem": "zoologica_02.png",
+    "simbolo": "",
     "flavor_text": "\"Um registro físico indispensável da nossa vasta fauna.\""
   },
   {
@@ -112,8 +124,9 @@
     "titulo": "Reservatório Silvestre",
     "subtitulo": "Elo da Cadeia",
     "descricao_ilustracao": "Pequeno roedor fotorrealista escondido na vegetação rasteira.",
-    "acao": "Transforme qualquer valor em 5.",
+    "acao": "Mude 1 dado para o símbolo de Mosquito.",
     "imagem": "zoologica_03.png",
+    "simbolo": "mosquito.svg",
     "flavor_text": "\"A doença repousa silenciosa na natureza antes de atacar.\""
   },
   {
@@ -121,8 +134,9 @@
     "titulo": "Mapeamento de Fauna",
     "subtitulo": "Distribuição Geográfica",
     "descricao_ilustracao": "Mapa topográfico com marcações apontando as áreas de incidência.",
-    "acao": "Re-role 2 dados.",
-    "imagem": "zoologica_04.png",
+    "acao": "Copie um símbolo: mude 1 dado para ficar igual a outro já na mesa.",
+    "imagem": "",
+    "simbolo": "mosquito.svg",
     "flavor_text": "\"Ampliando nossa visão sobre o território afetado.\""
   },
   {
@@ -130,8 +144,9 @@
     "titulo": "Estudo Evolutivo",
     "subtitulo": "Relação de Espécies",
     "descricao_ilustracao": "Crânios de diferentes animais alinhados para estudo comparativo.",
-    "acao": "Transforme qualquer valor em 5.",
+    "acao": "Mude 1 dado para o símbolo de Mosquito.",
     "imagem": "zoologica_05.png",
+    "simbolo": "mosquito.svg",
     "flavor_text": "\"O parentesco das espécies dita como o agente infeccioso se adapta.\""
   },
   {
@@ -139,8 +154,9 @@
     "titulo": "Exsicata Padrão",
     "subtitulo": "Catalogação de Flora",
     "descricao_ilustracao": "Ramo de planta seco e planificado cuidadosamente sobre papel pardo.",
-    "acao": "Subtraia ou some 1 do dado.",
+    "acao": "Mude 1 dado para o símbolo de Folha.",
     "imagem": "botanica_01.png",
+    "simbolo": "folha.svg",
     "flavor_text": "\"A identificação correta garante a eficácia da pesquisa.\""
   },
   {
@@ -148,8 +164,9 @@
     "titulo": "Extrato Foliar",
     "subtitulo": "Compostos Naturais",
     "descricao_ilustracao": "Uma gota verde brilhante pendurada na ponta de uma folha medicinal.",
-    "acao": "Subtraia ou some 1 do dado.",
+    "acao": "Mude 1 dado para o símbolo de Folha.",
     "imagem": "botanica_02.png",
+    "simbolo": "folha.svg",
     "flavor_text": "\"Extraindo o princípio ativo escondido na biodiversidade.\""
   },
   {
@@ -157,8 +174,9 @@
     "titulo": "Fitoterápico",
     "subtitulo": "Biotecnologia",
     "descricao_ilustracao": "Cápsulas transparentes revelando pós e grânulos vegetais.",
-    "acao": "Inverta o valor do dado.",
+    "acao": "Vire 1 dado para a face fisicamente oposta.",
     "imagem": "botanica_03.png",
+    "simbolo": "",
     "flavor_text": "\"Transformando a natureza nacional em solução de saúde pública.\""
   },
   {
@@ -166,8 +184,9 @@
     "titulo": "Saberes Tradicionais",
     "subtitulo": "Planta Medicinal",
     "descricao_ilustracao": "Ramo de erva recém-colhida exalando uma aura suave.",
-    "acao": "Transforme qualquer valor em 5.",
+    "acao": "Re-role até 2 dados.",
     "imagem": "botanica_04.png",
+    "simbolo": "",
     "flavor_text": "\"O conhecimento popular nos guia até a cura botânica.\""
   },
   {
@@ -175,8 +194,9 @@
     "titulo": "Destilação Botânica",
     "subtitulo": "Isolamento Químico",
     "descricao_ilustracao": "Balão de vidro destilando óleo essencial de folhas maceradas.",
-    "acao": "Transforme qualquer valor em 5.",
+    "acao": "Mude 1 dado para o símbolo de Folha.",
     "imagem": "botanica_05.png",
+    "simbolo": "folha.svg",
     "flavor_text": "\"Purificando as propriedades curativas do extrato vegetal.\""
   },
   {
@@ -184,8 +204,9 @@
     "titulo": "Fragmento Fóssil",
     "subtitulo": "Evidência Antiga",
     "descricao_ilustracao": "Pedaço de osso fossilizado incrustado em rocha sedimentar.",
-    "acao": "Subtraia ou some 1 do dado.",
+    "acao": "Mude 1 dado para qualquer símbolo, EXCETO o Castelo (Coringa).",
     "imagem": "arqueo_01.png",
+    "simbolo": "osso.svg",
     "flavor_text": "\"O solo preserva histórias milenares sobre antigas aflições.\""
   },
   {
@@ -193,8 +214,9 @@
     "titulo": "Escavação Cuidadosa",
     "subtitulo": "Resgate Histórico",
     "descricao_ilustracao": "Pincel de cerdas macias limpando a poeira de uma relíquia óssea.",
-    "acao": "Subtraia ou some 1 do dado.",
+    "acao": "Re-role 1 dado.",
     "imagem": "arqueo_02.png",
+    "simbolo": "",
     "flavor_text": "\"A cada camada de terra removida, um novo quebra-cabeça surge.\""
   },
   {
@@ -202,8 +224,9 @@
     "titulo": "Coprólito",
     "subtitulo": "Paleoepidemiologia",
     "descricao_ilustracao": "Fóssil fecal com estrutura interna evidenciando larvas petrificadas.",
-    "acao": "Transforme qualquer valor em 2.",
+    "acao": "Re-role até 2 dados.",
     "imagem": "arqueo_03.png",
+    "simbolo": "",
     "flavor_text": "\"Até os resíduos de milênios nos ensinam sobre parasitas.\""
   },
   {
@@ -211,8 +234,9 @@
     "titulo": "Marca Óssea",
     "subtitulo": "Paleopatologia",
     "descricao_ilustracao": "Crânio antigo com lesões porosas indicando uma infecção severa.",
-    "acao": "Re-role 2 dados.",
+    "acao": "Mude 1 dado para o símbolo da Arqueopaleontológica.",
     "imagem": "arqueo_04.png",
+    "simbolo": "osso.svg",
     "flavor_text": "\"A história das doenças está eternamente cravada nos ossos.\""
   },
   {
@@ -220,8 +244,9 @@
     "titulo": "Material Adormecido",
     "subtitulo": "Genética Ancestral",
     "descricao_ilustracao": "Estrutura de DNA translúcida emergindo da poeira de um artefato.",
-    "acao": "Transforme qualquer valor em 2.",
+    "acao": "Mude 1 dado para o símbolo da Arqueopaleontológica.",
     "imagem": "arqueo_05.png",
+    "simbolo": "osso.svg",
     "flavor_text": "\"Desvendando como os agentes infecciosos evoluíram até o presente.\""
   }
 ]

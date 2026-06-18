@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <g transform="translate(100, 100) rotate(-15) translate(-100, -100)">
+    
+    <path d="M 130 85 C 160 70, 170 50, 190 30 C 195 35, 175 55, 140 95 Z" />
+    <path d="M 140 100 C 170 95, 180 110, 195 115 C 190 125, 175 105, 140 110 Z" />
+    <path d="M 130 115 C 160 130, 170 150, 190 170 C 185 175, 165 155, 135 125 Z" />
+    
+    <rect x="50" y="50" width="10" height="25" rx="5" transform="rotate(-30 55 62)" />
+    <rect x="85" y="45" width="10" height="25" rx="5" />
+    <rect x="120" y="50" width="10" height="25" rx="5" transform="rotate(30 125 62)" />
+    <rect x="50" y="125" width="10" height="25" rx="5" transform="rotate(30 55 137)" />
+    <rect x="85" y="130" width="10" height="25" rx="5" />
+    <rect x="120" y="125" width="10" height="25" rx="5" transform="rotate(-30 125 137)" />
+    <rect x="20" y="95" width="25" height="10" rx="5" />
+    
+    <path fill-rule="evenodd" d="
+      M 70 65
+      L 110 65
+      A 35 35 0 0 1 145 100
+      A 35 35 0 0 1 110 135
+      L 70 135
+      A 35 35 0 0 1 35 100
+      A 35 35 0 0 1 70 65
+      Z
+      M 55 100
+      C 65 115, 75 115, 85 100
+      C 95 85, 105 85, 115 100
+      C 120 110, 130 110, 135 100
+      C 130 90, 120 90, 115 100
+      C 105 115, 95 115, 85 100
+      C 75 85, 65 85, 55 100
+      Z
+    " />
+    
+  </g>
+</svg>
