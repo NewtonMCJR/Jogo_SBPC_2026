@@ -107,13 +107,18 @@
         <!-- Placeholder invisible card to preserve grid layout positioning -->
         <div v-if="carta.isPlaceholder" class="card card-placeholder"></div>
         
-        <!-- Standard Card Back -->
         <div 
           v-else
           class="card card-back"
           :class="getCollectionClass(carta.colecao)"
         >
           <div class="card-inner back-inner">
+            <!-- Imagem de fundo temática para o verso da coleção -->
+            <img 
+              :src="'/imagens/' + getVersoImagem(carta.colecao)" 
+              class="back-bg-image" 
+              alt="Fundo do Verso"
+            />
             <div class="back-pattern">
               <!-- Emblem / Icon based on Collection -->
               <div class="back-emblem">
@@ -306,6 +311,17 @@ const getCollectionClass = (colecao) => {
     'Zoológica': 'theme-zoologica',
     'Botânica': 'theme-botanica',
     'Arqueopaleontológica': 'theme-arqueopaleontologica'
+  };
+  return mapping[colecao] || '';
+};
+
+const getVersoImagem = (colecao) => {
+  const mapping = {
+    'Histopatológica': 'verso_histopatologica.png',
+    'Microbiológica': 'verso_microbiologica.png',
+    'Zoológica': 'verso_zoologica.png',
+    'Botânica': 'verso_botanica.png',
+    'Arqueopaleontológica': 'verso_arqueopaleontologica.png'
   };
   return mapping[colecao] || '';
 };
@@ -782,8 +798,10 @@ const printCards = () => {
 }
 
 .back-inner {
+  position: relative;
+  overflow: hidden;
   border: 0.3mm solid rgba(255, 255, 255, 0.15);
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0.4) 100%) !important;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.82) 100%) !important;
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -793,7 +811,22 @@ const printCards = () => {
   box-sizing: border-box;
 }
 
+.back-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.45;
+  filter: saturate(0.85) brightness(0.65) contrast(1.1);
+  z-index: 1;
+  pointer-events: none;
+}
+
 .back-pattern {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -864,10 +897,16 @@ const printCards = () => {
 }
 
 .back-footer {
-  border-top: 0.25mm solid rgba(255, 255, 255, 0.12);
+  position: relative;
+  z-index: 2;
+  border-top: 0.25mm solid rgba(255, 255, 255, 0.15);
   width: 100%;
   padding-top: 2.2mm;
   text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  margin-top: 2mm;
+  padding-bottom: 0.5mm;
+  border-radius: 0 0 1mm 1mm;
 }
 
 .back-footer span {
