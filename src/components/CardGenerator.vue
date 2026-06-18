@@ -3,6 +3,13 @@
     <!-- Print controls visible only on screen -->
     <div class="print-controls no-print">
       <div class="header-content">
+        <button @click="$emit('go-home')" class="btn-back">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Voltar ao Início
+        </button>
         <h1>Coleções Biológicas Fiocruz</h1>
         <p class="subtitle">Gerador de Cartas para o Jogo de Tabuleiro (SBPC 2026)</p>
       </div>
@@ -218,6 +225,8 @@
 <script setup>
 import { ref, computed } from 'vue';
 import rawCartas from './cartas_fiocruz.json';
+
+defineEmits(['go-home']);
 
 const colecoes = [
   'Histopatológica',
@@ -442,6 +451,27 @@ const printCards = () => {
 .info-badge .count {
   font-weight: 700;
   color: #38bdf8;
+}
+
+.btn-back {
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  margin-bottom: 12px;
+}
+
+.btn-back:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f8fafc;
 }
 
 .btn-export {

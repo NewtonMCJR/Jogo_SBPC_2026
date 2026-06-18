@@ -29,10 +29,10 @@
         <div class="dashboard-card" @click="currentView = 'boards'">
           <div class="card-glow bg-purple"></div>
           <div class="card-icon">📐</div>
-          <h2>Tabuleiros de Jogador</h2>
+          <h2>Fichas de Profissões</h2>
           <p class="card-desc">Visualize e imprima as 5 fichas de jogador em formato A4, com áreas demarcadas para colocação de dados e cartas ativas de cada profissão.</p>
           <div class="card-badge">5 Fichas de Profissão</div>
-          <button class="btn-action">Acessar Tabuleiros</button>
+          <button class="btn-action">Acessar Fichas</button>
         </div>
       </div>
       
