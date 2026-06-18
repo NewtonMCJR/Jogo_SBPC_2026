@@ -36,150 +36,152 @@
       </div>
     </div>
 
-    <!-- 1. FRONTS OF CARDS (As 25 cartas de face) -->
-    <div class="section-title no-print">
-      <h2>Frente das Cartas (25 unidades)</h2>
-      <p>Clique em qualquer carta para abrir o painel de edição rápida</p>
-    </div>
-
-    <div class="cards-grid">
-      <div 
-        v-for="(carta, index) in cartas" 
-        :key="index" 
-        class="card card-front"
-        :class="getCollectionClass(carta.colecao)"
-        @click="openEditModal(index)"
-      >
-        <!-- Card Inner Border for a layered look -->
-        <div class="card-inner">
-          
-          <!-- Card Header (Title & Subtitle) -->
-          <header class="card-header">
-            <div class="collection-badge-wrapper">
-              <span class="collection-badge">{{ carta.colecao }}</span>
-            </div>
-            <h2 class="card-title">{{ carta.titulo }}</h2>
-            <h3 class="card-subtitle">{{ carta.subtitulo }}</h3>
-          </header>
-
-          <!-- Edit indicator on hover (Screen only) -->
-          <div class="edit-badge no-print">
-            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-              <path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4Z"></path>
-            </svg>
-          </div>
-
-          <!-- Illustration Area (21:9 Aspect Ratio) -->
-          <div class="card-illustration">
-            <div class="illustration-border">
-              <img 
-                :src="'/imagens/' + carta.imagem" 
-                :alt="carta.descricao_ilustracao" 
-                class="illustration-image" 
-              />
-              <!-- Overlay showing illustration text on screen hover -->
-              <div class="illustration-overlay no-print">
-                <p class="overlay-desc">{{ carta.descricao_ilustracao }}</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Action Area -->
-          <div class="card-action-box">
-            <span class="action-label">Ação</span>
-            <p class="action-desc">{{ carta.acao }}</p>
-            <!-- Símbolo Ativo (se houver) -->
-            <div v-if="carta.simbolo" class="simbolo-container">
-              <div 
-                class="simbolo-icon"
-                :style="{ 
-                  maskImage: `url('/imagens/${carta.simbolo}')`, 
-                  webkitMaskImage: `url('/imagens/${carta.simbolo}')` 
-                }"
-              ></div>
-            </div>
-          </div>
-
-          <!-- Card Footer (Flavor Text) -->
-          <footer class="card-footer">
-            <p class="flavor-text">{{ carta.flavor_text }}</p>
-          </footer>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- Print Separator to push backs to a new page -->
-    <div class="page-break-print"></div>
-
-    <!-- 2. BACKS OF CARDS (Os 25 versos das cartas, espelhados horizontalmente para alinhamento duplex) -->
-    <div class="section-title backs-section-title no-print">
-      <h2>Verso das Cartas (25 unidades)</h2>
-      <p>Gerados na mesma quantidade e espelhados horizontalmente para alinhamento perfeito duplex no A4</p>
-    </div>
-
-    <div class="cards-grid backs-grid">
-      <template v-for="(carta, index) in cartasVerso" :key="'back-' + index">
-        <!-- Placeholder invisible card to preserve grid layout positioning -->
-        <div v-if="carta.isPlaceholder" class="card card-placeholder"></div>
+    <!-- Printable A4 Sheets (Frentes e Versos intercalados por folha) -->
+    <div class="printable-sheets">
+      <template v-for="folha in folhasA4" :key="'folha-' + folha.id">
         
-        <div 
-          v-else
-          class="card card-back"
-          :class="getCollectionClass(carta.colecao)"
-        >
-          <div class="card-inner back-inner">
-            <!-- Imagem de fundo temática para o verso da coleção -->
-            <img 
-              :src="'/imagens/' + getVersoImagem(carta.colecao)" 
-              class="back-bg-image" 
-              alt="Fundo do Verso"
-            />
-            <div class="back-pattern">
-              <!-- Emblem / Icon based on Collection -->
-              <div class="back-emblem">
-                <svg v-if="carta.colecao === 'Histopatológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <circle cx="6" cy="9" r="1"></circle>
-                  <circle cx="17" cy="8" r="1.5"></circle>
-                  <circle cx="9" cy="16" r="2"></circle>
-                </svg>
-                <svg v-else-if="carta.colecao === 'Microbiológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <path d="M12 6a6 6 0 0 1 6 6c0 2.2-1.8 4-4 4s-4-1.8-4-4S12 6 12 6z"></path>
-                  <path d="M8 8l1.5 1.5M16 8l-1.5 1.5M8 16l1.5-1.5M16 16l-1.5-1.5"></path>
-                </svg>
-                <svg v-else-if="carta.colecao === 'Zoológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
-                  <path d="M12 2v20M12 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
-                  <path d="M2 12h20M6 8l12 8M6 16l12-8"></path>
-                </svg>
-                <svg v-else-if="carta.colecao === 'Botânica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
-                  <path d="M2 22C2 22 8 18 12 12C16 6 22 2 22 2C22 2 18 8 12 12C6 16 2 22 2 22Z"></path>
-                  <path d="M12 12l4 1M8 16l3 1M16 8l1 4M19 5l-3 1"></path>
-                </svg>
-                <svg v-else-if="carta.colecao === 'Arqueopaleontológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
-                  <path d="M17 3a5 5 0 0 0-5 5v8a5 5 0 0 0 10 0V8a5 5 0 0 0-5-5z"></path>
-                  <path d="M7 21a5 5 0 0 0 5-5V8a5 5 0 0 0-10 0v8a5 5 0 0 0 5 5z"></path>
-                  <circle cx="17" cy="8" r="2"></circle>
-                  <circle cx="7" cy="16" r="2"></circle>
-                </svg>
-              </div>
+        <!-- PÁGINA A4: FRENTES (9 cartas por página) -->
+        <div class="page-a4 page-fronts">
+          <!-- Seção de Título apenas na tela -->
+          <div class="section-title page-title-screen no-print">
+            <h2>Folha {{ folha.id + 1 }} - Frente das Cartas</h2>
+            <p>Clique em qualquer carta para abrir o painel de edição rápida</p>
+          </div>
+
+          <div class="cards-grid">
+            <template v-for="(carta, index) in folha.frentes" :key="'front-' + folha.id + '-' + index">
+              <!-- Placeholder invisível para alinhar o grid -->
+              <div v-if="carta.isPlaceholder" class="card card-placeholder"></div>
               
-              <!-- Branding and Typography -->
-              <div class="back-text">
-                <span class="back-brand">Fiocruz</span>
-                <h2 class="back-title">Coleção Biológica</h2>
-                <span class="back-sub">{{ carta.colecao }}</span>
+              <!-- Carta Real (Frente) -->
+              <div 
+                v-else
+                class="card card-front"
+                :class="getCollectionClass(carta.colecao)"
+                @click="openEditModal(carta.globalIndex)"
+              >
+                <div class="card-inner">
+                  <header class="card-header">
+                    <div class="collection-badge-wrapper">
+                      <span class="collection-badge">{{ carta.colecao }}</span>
+                    </div>
+                    <h2 class="card-title">{{ carta.titulo }}</h2>
+                    <h3 class="card-subtitle">{{ carta.subtitulo }}</h3>
+                  </header>
+
+                  <div class="edit-badge no-print">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                      <path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4Z"></path>
+                    </svg>
+                  </div>
+
+                  <div class="card-illustration">
+                    <div class="illustration-border">
+                      <img :src="'/imagens/' + carta.imagem" :alt="carta.descricao_ilustracao" class="illustration-image" />
+                      <div class="illustration-overlay no-print">
+                        <p class="overlay-desc">{{ carta.descricao_ilustracao }}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="card-action-box">
+                    <span class="action-label">Ação</span>
+                    <p class="action-desc">{{ carta.acao }}</p>
+                    <div v-if="carta.simbolo" class="simbolo-container">
+                      <div 
+                        class="simbolo-icon"
+                        :style="{ 
+                          maskImage: `url('/imagens/${carta.simbolo}')`, 
+                          webkitMaskImage: `url('/imagens/${carta.simbolo}')` 
+                        }"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <footer class="card-footer">
+                    <p class="flavor-text">{{ carta.flavor_text }}</p>
+                  </footer>
+                </div>
               </div>
-            </div>
-            
-            <div class="back-footer">
-              <span>SBPC 2026 • Jogo de Tabuleiro</span>
-            </div>
+            </template>
           </div>
         </div>
+
+        <!-- PÁGINA A4: VERSOS (9 cartas por página, espelhadas) -->
+        <div class="page-a4 page-backs">
+          <!-- Seção de Título apenas na tela -->
+          <div class="section-title page-title-screen no-print">
+            <h2>Folha {{ folha.id + 1 }} - Verso das Cartas</h2>
+            <p>Espelhado horizontalmente para alinhamento duplex no verso</p>
+          </div>
+
+          <div class="cards-grid backs-grid">
+            <template v-for="(carta, index) in folha.versos" :key="'back-' + folha.id + '-' + index">
+              <!-- Placeholder invisível para alinhar o grid -->
+              <div v-if="carta.isPlaceholder" class="card card-placeholder"></div>
+              
+              <!-- Carta Real (Verso) -->
+              <div 
+                v-else
+                class="card card-back"
+                :class="getCollectionClass(carta.colecao)"
+              >
+                <div class="card-inner back-inner">
+                  <!-- Imagem de fundo temática para o verso da coleção -->
+                  <img 
+                    :src="'/imagens/' + getVersoImagem(carta.colecao)" 
+                    class="back-bg-image" 
+                    alt="Fundo do Verso"
+                  />
+                  <div class="back-pattern">
+                    <!-- Emblem / Icon based on Collection -->
+                    <div class="back-emblem">
+                      <svg v-if="carta.colecao === 'Histopatológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <circle cx="6" cy="9" r="1"></circle>
+                        <circle cx="17" cy="8" r="1.5"></circle>
+                        <circle cx="9" cy="16" r="2"></circle>
+                      </svg>
+                      <svg v-else-if="carta.colecao === 'Microbiológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 6a6 6 0 0 1 6 6c0 2.2-1.8 4-4 4s-4-1.8-4-4S12 6 12 6z"></path>
+                        <path d="M8 8l1.5 1.5M16 8l-1.5 1.5M8 16l1.5-1.5M16 16l-1.5-1.5"></path>
+                      </svg>
+                      <svg v-else-if="carta.colecao === 'Zoológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
+                        <path d="M12 2v20M12 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
+                        <path d="M2 12h20M6 8l12 8M6 16l12-8"></path>
+                      </svg>
+                      <svg v-else-if="carta.colecao === 'Botânica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
+                        <path d="M2 22C2 22 8 18 12 12C16 6 22 2 22 2C22 2 18 8 12 12C6 16 2 22 2 22Z"></path>
+                        <path d="M12 12l4 1M8 16l3 1M16 8l1 4M19 5l-3 1"></path>
+                      </svg>
+                      <svg v-else-if="carta.colecao === 'Arqueopaleontológica'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-emblem">
+                        <path d="M17 3a5 5 0 0 0-5 5v8a5 5 0 0 0 10 0V8a5 5 0 0 0-5-5z"></path>
+                        <path d="M7 21a5 5 0 0 0 5-5V8a5 5 0 0 0-10 0v8a5 5 0 0 0 5 5z"></path>
+                        <circle cx="17" cy="8" r="2"></circle>
+                        <circle cx="7" cy="16" r="2"></circle>
+                      </svg>
+                    </div>
+                    
+                    <!-- Branding and Typography -->
+                    <div class="back-text">
+                      <span class="back-brand">Fiocruz</span>
+                      <h2 class="back-title">Coleção Biológica</h2>
+                      <span class="back-sub">{{ carta.colecao }}</span>
+                    </div>
+                  </div>
+                  
+                  <div class="back-footer">
+                    <span>SBPC 2026 • Jogo de Tabuleiro</span>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+
       </template>
     </div>
 
@@ -300,33 +302,42 @@ const exportJSON = () => {
   downloadAnchor.remove();
 };
 
-// Reorganizes and mirrors card backs horizontally for perfect A4 duplex alignment
-const cartasVerso = computed(() => {
+// Agrupa as cartas em páginas A4, intercalando uma folha de frentes com uma folha de versos
+const folhasA4 = computed(() => {
   const list = [...cartas.value];
-  const mirroredList = [];
+  const pages = [];
   const cardsPerPage = 9;
   const cols = 3;
   
-  // Group into pages of 9
-  for (let p = 0; p < list.length; p += cardsPerPage) {
-    const page = list.slice(p, p + cardsPerPage);
+  for (let i = 0; i < list.length; i += cardsPerPage) {
+    const chunk = list.slice(i, i + cardsPerPage);
     
-    // Process in rows of 3 columns
-    for (let r = 0; r < cardsPerPage; r += cols) {
-      const row = page.slice(r, r + cols);
-      if (row.length === 0) break;
-      
-      // If the last row of the page is incomplete, pad it with placeholders to maintain grid position
-      while (row.length < cols) {
-        row.push({ isPlaceholder: true });
-      }
-      
-      // Reverse row order horizontally to align correctly when printed double-sided
-      row.reverse();
-      mirroredList.push(...row);
+    // Completa a página com placeholders se necessário
+    while (chunk.length < cardsPerPage) {
+      chunk.push({ isPlaceholder: true, id: 'placeholder-' + i + '-' + chunk.length });
     }
+    
+    // 1. Criar a página de frentes (ordem normal 0 a 8)
+    const frentes = chunk.map((c, idx) => ({
+      ...c,
+      globalIndex: i + idx // Guarda o índice global real para edição
+    }));
+    
+    // 2. Criar a página de versos (espelhada horizontalmente, ou seja, reverte a ordem de cada linha de 3 colunas)
+    const versos = [];
+    for (let r = 0; r < cardsPerPage; r += cols) {
+      const row = chunk.slice(r, r + cols);
+      row.reverse(); // Inverte a ordem das colunas para alinhamento duplex
+      versos.push(...row);
+    }
+    
+    pages.push({
+      id: i / cardsPerPage,
+      frentes,
+      versos
+    });
   }
-  return mirroredList;
+  return pages;
 });
 
 const getCollectionClass = (colecao) => {
@@ -563,18 +574,78 @@ const printCards = () => {
 }
 
 /* Card Grid Layout */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 59mm);
-  gap: 20px;
-  justify-content: center;
-  padding: 10px;
-  max-width: 1200px;
-  margin: 0 auto;
+/* Printable container for screen view */
+.printable-sheets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
 }
 
-.backs-grid {
-  margin-bottom: 50px;
+/* ------------------------------------------------------------- */
+/* RIGID A4 LAYOUT FOR PRINT (210mm x 297mm)                     */
+/* ------------------------------------------------------------- */
+.page-a4 {
+  width: 210mm;
+  height: 297mm;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  color: #1e293b;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10mm;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+  border-radius: 4px;
+  
+  /* Print breaks */
+  page-break-after: always;
+  break-after: page;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page-title-screen {
+  position: absolute;
+  top: 3mm;
+  left: 10mm;
+  border-left: 3px solid #38bdf8;
+  padding-left: 8px;
+  margin: 0;
+}
+
+.page-title-screen h2 {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #64748b;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.page-title-screen p {
+  font-size: 8px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.page-backs .page-title-screen {
+  border-left-color: #a855f7;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 59mm);
+  grid-template-rows: repeat(3, 85mm);
+  gap: 4mm;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 /* ------------------------------------------------------------- */
@@ -1176,8 +1247,8 @@ const printCards = () => {
   html, body {
     background: #ffffff !important;
     color: #000000 !important;
-    width: 210mm;
-    height: 297mm;
+    width: 210mm !important;
+    height: 297mm !important;
     margin: 0 !important;
     padding: 0 !important;
   }
@@ -1186,7 +1257,7 @@ const printCards = () => {
     background: transparent !important;
     padding: 0 !important;
     margin: 0 !important;
-    width: 210mm;
+    width: 210mm !important;
   }
   
   /* Hide web controls completely */
@@ -1197,22 +1268,49 @@ const printCards = () => {
     padding: 0 !important;
   }
   
+  .printable-sheets {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 210mm !important;
+  }
+  
+  .page-a4 {
+    box-shadow: none !important;
+    margin: 0 !important;
+    border: none !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    padding: 10mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    
+    /* Strict page break rules */
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
+  .page-a4:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
   /* Layout the grid to fit A4 perfectly */
   .cards-grid {
     display: grid !important;
     grid-template-columns: repeat(3, 59mm) !important;
+    grid-template-rows: repeat(3, 85mm) !important;
     gap: 4mm !important;
     padding: 0 !important;
     margin: 0 !important;
-    justify-content: flex-start !important;
-    max-width: 210mm !important;
-  }
-  
-  /* Separator pushes backs to a clean new page when printing */
-  .page-break-print {
-    display: block !important;
-    page-break-before: always !important;
-    break-before: page !important;
+    justify-content: center !important;
+    align-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
   }
   
   /* Disable hover effects and shadows for print accuracy */
@@ -1236,7 +1334,7 @@ const printCards = () => {
   }
 
   .back-inner {
-    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0.4) 100%) !important;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.82) 100%) !important;
     color: #ffffff !important;
   }
 }
@@ -1244,6 +1342,6 @@ const printCards = () => {
 /* Define A4 page dimensions and reset margins */
 @page {
   size: A4 portrait;
-  margin: 10mm 10mm 10mm 10mm;
+  margin: 0;
 }
 </style>
