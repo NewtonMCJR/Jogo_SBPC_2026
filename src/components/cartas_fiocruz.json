@@ -14,7 +14,7 @@
     "titulo": "Biópsia Focada",
     "subtitulo": "Investigação de Tecido",
     "descricao_ilustracao": "Fragmento de tecido com uma área infecciosa circulada em vermelho.",
-    "acao": "Mude 1 dado para qualquer símbolo, EXCETO o Castelo (Coringa).",
+    "acao": "Mude 1 dado para qualquer símbolo",
     "imagem": "histopatologia_02.png",
     "simbolo": "dna.svg",
     "flavor_text": "\"Um olhar mais atento na amostra pode mudar o diagnóstico.\""
@@ -204,9 +204,9 @@
     "titulo": "Fragmento Fóssil",
     "subtitulo": "Evidência Antiga",
     "descricao_ilustracao": "Pedaço de osso fossilizado incrustado em rocha sedimentar.",
-    "acao": "Mude 1 dado para qualquer símbolo, EXCETO o Castelo (Coringa).",
+    "acao": "Mude 1 dado para o símbolo",
     "imagem": "arqueo_01.png",
-    "simbolo": "dna.svg",
+    "simbolo": "osso.svg",
     "flavor_text": "\"O solo preserva histórias milenares sobre antigas aflições.\""
   },
   {
@@ -234,7 +234,7 @@
     "titulo": "Marca Óssea",
     "subtitulo": "Paleopatologia",
     "descricao_ilustracao": "Crânio antigo com lesões porosas indicando uma infecção severa.",
-    "acao": "Mude 1 dado para o símbolo da Arqueopaleontológica.",
+    "acao": "Mude 1 dado para o símbolo",
     "imagem": "arqueo_04.png",
     "simbolo": "osso.svg",
     "flavor_text": "\"A história das doenças está eternamente cravada nos ossos.\""
@@ -244,9 +244,9 @@
     "titulo": "Material Adormecido",
     "subtitulo": "Genética Ancestral",
     "descricao_ilustracao": "Estrutura de DNA translúcida emergindo da poeira de um artefato.",
-    "acao": "Mude 1 dado para o símbolo da Arqueopaleontológica.",
+    "acao": "Mude 1 dado para qualquer símbolo",
     "imagem": "arqueo_05.png",
-    "simbolo": "osso.svg",
+    "simbolo": "dna.svg",
     "flavor_text": "\"Desvendando como os agentes infecciosos evoluíram até o presente.\""
   }
 ]

@@ -759,31 +759,31 @@ const printCards = () => {
 }
 
 .collection-badge {
-  font-size: 4.5pt;
+  font-size: 6pt;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.8px;
   color: #ffffff;
   background-color: var(--primary-dark);
-  padding: 0.4mm 1.5mm;
-  border-radius: 0.6mm;
+  padding: 0.6mm 2mm;
+  border-radius: 0.8mm;
 }
 
 .card-title {
   font-family: 'Cinzel', serif;
-  font-size: 7.5pt;
+  font-size: 10.5pt;
   font-weight: 800;
   color: var(--primary-dark);
   margin: 0;
-  line-height: 1.1;
+  line-height: 1.15;
   letter-spacing: -0.1px;
 }
 
 .card-subtitle {
-  font-size: 5.5pt;
+  font-size: 7.5pt;
   font-weight: 500;
   color: #64748b;
-  margin: 0.5mm 0 0 0;
+  margin: 0.8mm 0 0 0;
   font-style: italic;
   letter-spacing: 0.1px;
 }
@@ -841,7 +841,7 @@ const printCards = () => {
 }
 
 .overlay-desc {
-  font-size: 5.8pt;
+  font-size: 7.5pt;
   line-height: 1.35;
   text-align: center;
   color: #cbd5e1;
@@ -854,7 +854,7 @@ const printCards = () => {
   background: rgba(255, 255, 255, 0.9);
   border: 0.4mm solid var(--primary-color);
   border-radius: 1.5mm;
-  padding: 1.8mm 1.5mm 1.2mm 1.5mm;
+  padding: 2.2mm 1.5mm 1.5mm 1.5mm;
   margin-bottom: 1.8mm;
   position: relative;
   box-sizing: border-box;
@@ -863,28 +863,28 @@ const printCards = () => {
 
 .action-label {
   position: absolute;
-  top: -2.5mm;
+  top: -2.8mm;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 4.5pt;
+  font-size: 6pt;
   font-weight: 800;
   text-transform: uppercase;
   color: #ffffff;
   background-color: var(--primary-color);
-  padding: 0.2mm 1.8mm;
-  border-radius: 0.6mm;
+  padding: 0.3mm 2mm;
+  border-radius: 0.8mm;
   border: 0.2mm solid #ffffff;
   box-shadow: 0 0.5mm 1mm rgba(0, 0, 0, 0.1);
-  letter-spacing: 0.4px;
+  letter-spacing: 0.5px;
 }
 
 .action-desc {
-  font-size: 7.2pt;
+  font-size: 9.5pt;
   font-weight: 700;
   color: var(--primary-dark);
   margin: 0;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .simbolo-container {
@@ -918,12 +918,12 @@ const printCards = () => {
 }
 
 .flavor-text {
-  font-size: 5.2pt;
+  font-size: 7pt;
   font-style: italic;
   text-align: center;
   color: #475569;
   margin: 0;
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 /* ------------------------------------------------------------- */
@@ -1001,9 +1001,9 @@ const printCards = () => {
 }
 
 .back-brand {
-  font-size: 5.5pt;
+  font-size: 7.5pt;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.8px;
   color: var(--primary-light);
   opacity: 0.75;
   margin-bottom: 2mm;
@@ -1012,24 +1012,24 @@ const printCards = () => {
 
 .back-title {
   font-family: 'Cinzel', serif;
-  font-size: 9pt;
+  font-size: 12pt;
   font-weight: 800;
   margin: 0 0 2mm 0;
-  line-height: 1.1;
-  letter-spacing: 0.5px;
+  line-height: 1.15;
+  letter-spacing: 0.6px;
   color: #ffffff;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
 }
 
 .back-sub {
-  font-size: 5.5pt;
+  font-size: 7.5pt;
   font-weight: 700;
   color: var(--primary-dark);
   background: #ffffff;
-  padding: 0.5mm 3.5mm;
+  padding: 0.6mm 4mm;
   border-radius: 9999px;
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
@@ -1047,8 +1047,8 @@ const printCards = () => {
 }
 
 .back-footer span {
-  font-size: 4.8pt;
-  letter-spacing: 0.4px;
+  font-size: 6.5pt;
+  letter-spacing: 0.5px;
   color: var(--primary-light);
   opacity: 0.65;
   text-transform: uppercase;
