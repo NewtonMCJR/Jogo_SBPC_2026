@@ -34,6 +34,16 @@
           <div class="card-badge">5 Fichas de Profissão</div>
           <button class="btn-action">Acessar Fichas</button>
         </div>
+
+        <!-- Card 3: Game Manual -->
+        <div class="dashboard-card" @click="currentView = 'manual'">
+          <div class="card-glow bg-green"></div>
+          <div class="card-icon">📖</div>
+          <h2>Manual do Jogo</h2>
+          <p class="card-desc">Consulte as regras completas do jogo: objetivos, componentes, preparação, fluxo de turnos, habilidades das profissões e condições de vitória.</p>
+          <div class="card-badge">Manual de Regras</div>
+          <button class="btn-action">Acessar Manual</button>
+        </div>
       </div>
       
       <footer class="home-footer">
@@ -46,6 +56,9 @@
 
     <!-- 3. PLAYER BOARD VIEW -->
     <PlayerBoards v-else-if="currentView === 'boards'" @go-home="currentView = 'home'" />
+
+    <!-- 4. GAME MANUAL VIEW -->
+    <GameManual v-else-if="currentView === 'manual'" @go-home="currentView = 'home'" />
   </div>
 </template>
 
@@ -53,6 +66,7 @@
 import { ref } from 'vue';
 import CardGenerator from './components/CardGenerator.vue';
 import PlayerBoards from './components/PlayerBoards.vue';
+import GameManual from './components/GameManual.vue';
 
 const currentView = ref('home');
 </script>
@@ -141,7 +155,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 40px;
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto 50px auto;
   width: 100%;
 }
@@ -258,6 +272,10 @@ body {
 
 .bg-purple {
   background: radial-gradient(circle, #a855f7 0%, transparent 70%);
+}
+
+.bg-green {
+  background: radial-gradient(circle, #22c55e 0%, transparent 70%);
 }
 
 /* Footer */
